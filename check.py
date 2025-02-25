@@ -11,6 +11,8 @@ def check_if_sex(x):
 
 print('hello')
 
+
+
 x = input("Please enter your number: ")
 xt=int(x)
 oui=check_if_sex(xt)
