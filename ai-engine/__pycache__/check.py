@@ -9,7 +9,6 @@ def powerInt(x,y):
 def check_if_sex(x):
     return 140-x-1
 
-print('hello')
 
 
 
