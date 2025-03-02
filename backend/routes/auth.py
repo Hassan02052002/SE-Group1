@@ -22,6 +22,9 @@ class UserRegister(BaseModel):
     email: EmailStr
     password: str
 
+class ForgotPasswordRequest(BaseModel):
+    email: EmailStr
+
 class UserLogin(BaseModel):
     email: EmailStr
     password: str
@@ -80,6 +83,20 @@ async def get_current_user(token: str = Depends(oauth2_scheme)):
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
         user = users_collection.find_one({"email": payload["email"]}, {"_id": 0, "password": 0})
-        return user
+        if user:
+            return user
+        raise HTTPException(status_code=404, detail="User not found")
     except JWTError:
         raise HTTPException(status_code=401, detail="Invalid token")
+
+@router.post("/forgot-password")
+async def forgot_password(request: ForgotPasswordRequest):
+    user = users_collection.find_one({"email": request.email})
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    # TODO: Implement email sending logic with a real reset link
+    reset_link = f"http://localhost:3000/reset-password?email={request.email}"
+    print(f"🔗 Reset link (for testing): {reset_link}")
+
+    return {"message": "Password reset link sent! Check your email."}

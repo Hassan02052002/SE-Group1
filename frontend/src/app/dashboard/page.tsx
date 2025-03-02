@@ -1,59 +1,88 @@
 "use client"; // ✅ Required for client-side state handling
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import axios from "axios";
 
 export default function DashboardPage() {
+  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
   const [destination, setDestination] = useState("");
   const [budget, setBudget] = useState("");
   const [preferences, setPreferences] = useState("");
   const [itinerary, setItinerary] = useState("");
   const [loading, setLoading] = useState(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+
+    if (!token) {
+      router.push("/login"); // Redirect if not logged in
+    } else {
+      axios
+        .get("http://127.0.0.1:8000/auth/me", {
+          headers: { Authorization: `Bearer ${token}` },
+        })
+        .then((res) => setUser(res.data))
+        .catch(() => {
+          localStorage.removeItem("token"); // Clear invalid token
+          router.push("/login");
+        });
+    }
+  }, []);
 
   const handleGenerate = async () => {
     setLoading(true);
     setItinerary(""); // Clear previous results
 
     try {
-      const res = await axios.post("http://127.0.0.1:8000/ai/generate", {
-        destination,
-        budget: parseInt(budget), // Ensure budget is a number
-        preferences: preferences.split(","), // Convert to list
-      });
+      const res = await axios.post(
+        "http://127.0.0.1:8000/ai/generate",
+        {
+          destination,
+          budget: parseInt(budget),
+          preferences: preferences.split(","),
+        },
+        { headers: { Authorization: `Bearer ${localStorage.getItem("token")}` } }
+      );
 
-      setItinerary(res.data.itinerary); // Store AI response
+      setItinerary(res.data.itinerary);
     } catch (err) {
       setItinerary("Failed to generate itinerary. Please try again.");
     }
-    
+
     setLoading(false);
   };
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
       <div className="bg-gray-900 p-8 rounded-xl shadow-lg w-96 text-center">
-        <h1 className="text-3xl font-bold mb-4">AI Travel Planner</h1>
+        {user ? (
+          <h1 className="text-3xl font-bold mb-4">Hello, {user.name.split(" ")[0]} </h1>
+        ) : (
+          <h1 className="text-3xl font-bold mb-4">Loading...</h1>
+        )}
 
         <input
           type="text"
           placeholder="Destination"
           value={destination}
           onChange={(e) => setDestination(e.target.value)}
-          className="p-2 border border-gray-700 bg-gray-800 text-white rounded mb-2 w-full"
+          className="p-2 border border-gray-800 bg-black text-white rounded mb-2 w-full transition-colors duration-600 hover:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-700"
         />
         <input
           type="number"
           placeholder="Budget ($)"
           value={budget}
           onChange={(e) => setBudget(e.target.value)}
-          className="p-2 border border-gray-700 bg-gray-800 text-white rounded mb-2 w-full"
+          className="p-2 border border-gray-800 bg-black text-white rounded mb-2 w-full transition-colors duration-600 hover:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-700"
         />
         <input
           type="text"
           placeholder="Preferences (e.g., beaches, nightlife)"
           value={preferences}
           onChange={(e) => setPreferences(e.target.value)}
-          className="p-2 border border-gray-700 bg-gray-800 text-white rounded mb-4 w-full"
+          className="p-2 border border-gray-800 bg-black text-white rounded mb-2 w-full transition-colors duration-600 hover:bg-gray-900 focus:outline-none focus:ring-1 focus:ring-gray-700"
         />
 
         <button
