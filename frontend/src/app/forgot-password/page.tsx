@@ -25,7 +25,7 @@ export default function ForgotPasswordPage() {
 
   return (
     <div className="flex flex-col items-center items-center justify-items-center min-h-screen p-8 pb-16 gap-4 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <h1 className="text-4xl font-bold mb-4 text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">Forgot Password?</h1>
+      <h1 className="text-4xl font-bold mb-4 text-sm text-center sm:text-left ">Forgot Password?</h1>
       {error && <p className="text-red-500">{error}</p>}
       <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
               src/app/forgot-password/page.tsx
