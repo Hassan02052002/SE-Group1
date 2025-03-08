@@ -2,7 +2,10 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import Image from "next/image";
 import axios from "axios";
+import { FaUser, FaEnvelope, FaLock } from "react-icons/fa";
 
 export default function RegisterPage() {
   const [name, setName] = useState("");
@@ -24,37 +27,59 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-black text-white">
-      <div className="bg-gray-900 p-8 rounded-xl shadow-lg w-96 text-center">
-        <h1 className="text-3xl font-bold mb-4">Register</h1>
+    <div className="flex flex-col sm:flex-row min-h-screen">
+      <div className="hidden sm:flex sm:w-1/2 bg-cover bg-gray-900 bg-center items-center justify-center" style={{ backgroundImage: `url('/nomad.svg')` }}>
+        <Image
+          className="dark:invert scale-190 p-2"
+          src="/nomad.svg"
+          alt="Nomad logo"
+          width={300}
+          height={30}
+          priority
+        />
+      </div>
+      <div className="flex flex-col items-center bg-black items-center justify-items-center sm:w-1/2 p-8 pb-16 gap-1 sm:p-20">
+        <div className="w-64 text-left">
+          <h1 className="text-2xl font-bold mb-4 text-white">Register</h1>
+        </div>
         {error && <p className="text-red-500">{error}</p>}
-        <input
-          type="text"
-          placeholder="Full Name"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
-          className="p-2 border border-gray-700 bg-gray-800 text-white rounded mb-2 w-full"
-        />
-        <input
-          type="email"
-          placeholder="Email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          className="p-2 border border-gray-700 bg-gray-800 text-white rounded mb-2 w-full"
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="p-2 border border-gray-700 bg-gray-800 text-white rounded mb-4 w-full"
-        />
-        <button 
-          onClick={handleRegister} 
-          className="bg-gray-800 hover:bg-gray-700 text-white font-semibold px-4 py-2 rounded w-full transition duration-300"
-        >
+
+        <label className="text-white mb-1 w-64 text-left">Full Name</label>
+        <div className="flex items-center border border-gray-800 bg-transparent text-white rounded mb-2 w-64 transition-colors duration-500 hover:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-600">
+          <FaUser className="ml-2 transition-colors duration-500 hover:text-gray-500" />
+          <input
+            type="text"
+            placeholder="Enter your Full Name"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="p-2 bg-transparent text-white w-full focus:outline-none"
+          />
+        </div>
+        <label className="text-white mb-1 w-64 text-left">Email Address</label>
+        <div className="flex items-center border border-gray-800 bg-transparent text-white rounded mb-2 w-64 transition-colors duration-500 hover:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-600">
+          <FaEnvelope className="ml-2 transition-colors duration-500 hover:text-gray-500" />
+          <input
+            type="email"
+            placeholder="Enter your Email Address"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            className="p-2 bg-transparent text-white w-full focus:outline-none"
+          />
+        </div>
+        <label className="text-white mb-1 w-64 text-left">Password</label>
+        <div className="flex items-center border border-gray-800 bg-black text-white rounded mb-2 w-64 transition-colors duration-500 hover:bg-gray-800 focus-within:ring-1 focus-within:ring-gray-600">
+          <FaLock className="ml-2 transition-colors duration-500 hover:text-gray-500" />
+          <input
+            type="password"
+            placeholder="Password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="p-2 bg-transparent text-white w-full focus:outline-none"
+          />
+        </div>
+        <Button className="bg-blue-800 w-64 transition-color duration-500 hover:bg-blue-900" onClick={handleRegister}>
           Register
-        </button>
+        </Button>
         <p className="text-gray-400 mt-4">
           Already have an account? <a href="/login" className="text-blue-400 hover:underline">Login</a>
         </p>
