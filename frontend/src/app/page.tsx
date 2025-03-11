@@ -13,12 +13,8 @@ export default function Home() {
             priority
           />
           <ol className="text-sm text-center sm:text-left text-white">
-            <h3 className="mb-2">
-              Welcome to Nomad{" "}
-              <code className="bg-white/[.12] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-                src/app/page.tsx
-              </code>
-              .
+            <h3 className="mb-2 font-bold ">
+              Welcome to Nomad
             </h3>
             <h3 className="w-96">Tired of spending hours planning your trips? Let Nomad do the work for you. Powered by cutting-edge AI, Nomad crafts personalized, efficient, and adventure-packed itineraries tailored to your interests, schedule, and budget.</h3>
           </ol>

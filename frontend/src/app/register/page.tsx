@@ -28,19 +28,21 @@ export default function RegisterPage() {
 
   return (
     <div className="flex flex-col sm:flex-row min-h-screen">
-      <div className="hidden sm:flex sm:w-1/2 bg-cover bg-gray-900 bg-center items-center justify-center" style={{ backgroundImage: `url('/nomad.svg')` }}>
-        <Image
-          className="dark:invert scale-190 p-2"
-          src="/nomad.svg"
-          alt="Nomad logo"
-          width={300}
-          height={30}
-          priority
-        />
+      <div className="hidden sm:flex sm:w-1/2 bg-cover bg-gradient-to-br from-black via-gray-900 to-gray-800 bg-center items-center justify-center">
+        <div className="max-w-md text-white">
+          <Image src="/nomad.svg" alt="Nomad logo" width={150} height={30} priority />
+          <h1 className="text-4xl font-bold mt-6">Start your Journey with us</h1>
+          <p className="mt-4 text-gray-300">We are your itinerary planners, come chat with us and find your optimal and most tailored travel plan!</p>
+          {/* Testimonial Box */}
+          <div className="mt-6 p-4 bg-gray-800 rounded-xl shadow-md">
+            <p className="text-sm italic">"Nomad made my trip to Indonesia absolutely unforgettable! Everything was so easy to follow, and I never had to stress about logistics. Highly recommend!"</p>
+            <p className="mt-2 text-right text-sm font-bold">- Timothy K.</p>
+          </div>
+        </div>
       </div>
       <div className="flex flex-col items-center bg-black items-center justify-items-center sm:w-1/2 p-8 pb-16 gap-1 sm:p-20">
         <div className="w-64 text-left">
-          <h1 className="text-2xl font-bold mb-4 text-white">Register</h1>
+          <h1 className="text-2xl font-bold mb-4 text-white">Register Now</h1>
         </div>
         {error && <p className="text-red-500">{error}</p>}
 
