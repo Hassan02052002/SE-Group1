@@ -100,3 +100,4 @@ async def forgot_password(request: ForgotPasswordRequest):
     print(f"🔗 Reset link (for testing): {reset_link}")
 
     return {"message": "Password reset link sent! Check your email."}
+
