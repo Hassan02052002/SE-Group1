@@ -4,6 +4,10 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button"
+
+// import { Input } from "@/components/ui/input"
+// import { Label } from "@/components/ui/label"
 import Navbar from "@/components/Navbar";
 
 export default function DashboardPage() {
@@ -56,6 +60,8 @@ export default function DashboardPage() {
         >
           Generate New Itinerary
         </button>
+        
+
       </div>
     </div>
   );
