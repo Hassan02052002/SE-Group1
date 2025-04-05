@@ -18,8 +18,12 @@ export default function ForgotPasswordPage() {
   
     try {
       const res = await axios.post("http://127.0.0.1:8000/auth/forgot-password", { email });
-      setMessage("Password reset link sent! Check your email.");
-    } catch (err) {
+      if (res.status !== 200) {
+        setMessage("Failed to send reset link");
+      } else {
+        setMessage("Password reset link sent! Check your email.");
+      }
+    } catch {
       setError("Failed to send reset link. Please try again.");
     }
   };
