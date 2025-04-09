@@ -108,7 +108,7 @@ export const colors = {
    * @returns CSS class string for gradient text
    */
   export const gradientText = () => 
-    `bg-gradient-to-r from-${colors.primary.main}-400 to-teal-500 bg-clip-text text-transparent`;
+    `bg-gradient-to-r from-emerald-400 to-teal-500 bg-clip-text text-transparent`;
   
   /**
    * Helper function to generate primary button style
