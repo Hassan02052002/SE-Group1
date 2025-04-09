@@ -16,7 +16,7 @@ export default function Home() {
             <h3 className="mb-2 font-bold ">
               Welcome to Nomad
             </h3>
-            <h3 className="w-96">Tired of spending hours planning your trips? Let Nomad do the work for you. Powered by cutting-edge AI, Nomad crafts personalized, efficient, and adventure-packed itineraries tailored to your interests, schedule, and budget.</h3>
+            <h3 className="w-96 ">Tired of spending hours planning your trips? Let Nomad do the work for you. Powered by cutting-edge AI, Nomad crafts personalized, efficient, and adventure-packed itineraries tailored to your interests, schedule, and budget.</h3>
           </ol>
 
           <div className="flex gap-4 items-center flex-col sm:flex-row">
@@ -46,51 +46,8 @@ export default function Home() {
           </div>
         </main>
         <footer className="flex gap-6 flex-wrap items-center justify-center text-white">
-          <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="/file.svg"
-              alt="File icon"
-              width={16}
-              height={16}
-            />
-            Learn
-          </a>
-          <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="/window.svg"
-              alt="Window icon"
-              width={16}
-              height={16}
-            />
-            Examples
-          </a>
-          <a
-            className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-            href="/login"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              aria-hidden
-              src="/globe.svg"
-              alt="Globe icon"
-              width={16}
-              height={16}
-            />
-            Go to login page →
-          </a>
+          
+          
         </footer>
       </div>
       <div className="hidden sm:flex sm:w-1/2 bg-cover bg-center items-center justify-center" style={{ backgroundImage: "url('/profilegrid.svg'), linear-gradient(to bottom, #000000,rgb(0, 0, 0))", backgroundSize: "contain, cover", backgroundRepeat: "no-repeat" }}>
