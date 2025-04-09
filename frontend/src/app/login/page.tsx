@@ -142,13 +142,13 @@ export default function LoginPage() {
             </div>
 
             {/* Login Button */}
-            <Button 
-              className={`w-full py-6 ${primaryButton()}`}
+            <button
+              className="w-full py-3 bg-emerald-800 text-white font-medium rounded-[30px] transition-transform transform duration-1000 hover:bg-emerald-700"
               onClick={handleLogin}
               disabled={loading}
             >
               {loading ? "Logging in..." : "Sign In"}
-            </Button>
+            </button>
 
             {/* Signup Link */}
             <div className="text-center mt-6">
