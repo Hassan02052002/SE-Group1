@@ -99,6 +99,7 @@ regex
 requests
 rich
 rsa
+routes
 safetensors
 scikit-learn
 scipy
