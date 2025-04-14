@@ -101,9 +101,11 @@ export default function DashboardPage() {
     if (!token) {
       router.push("/login"); // Redirect if not logged in
     } else {
+      console.log("API URL Dashboard:", process.env.NEXT_PUBLIC_API_URL);
       setLoading(true);
+
       axios
-        .get("http://127.0.0.1:8000/auth/me", {
+        .get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
           headers: { Authorization: `Bearer ${token}` },
         })
         .then((res) => {
