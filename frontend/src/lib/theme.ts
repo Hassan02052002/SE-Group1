@@ -6,6 +6,7 @@
  */
 export const colors = {
     primary: {
+      main: 'emerald-500',
       // Key color name (used in tailwind classes like bg-emerald-600)
       gradient: {
         from: 'emerald-400',
