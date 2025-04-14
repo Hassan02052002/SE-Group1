@@ -16,10 +16,10 @@
   
   /* Apply heading font to all headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: var(--font-space-grotesk), system-ui, sans-serif;
-    font-weight: 600;
+    font-family: "Inter", system-ui, sans-serif;
+    font-weight: 300;
     line-height: 1.2;
-    letter-spacing: -0.01em;
+    letter-spacing: -0.02em;
   }
   
   /* Specific heading sizes */
@@ -34,7 +34,7 @@
   }
   
   h3 {
-    font-size: 1.5rem;
+    font-size: 1.25rem;
     margin-bottom: 0.75rem;
   }
   

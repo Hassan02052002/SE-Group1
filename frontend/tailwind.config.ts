@@ -1,5 +1,7 @@
 // tailwind.config.js
 /** @type {import('tailwindcss').Config} */
+const colors = require('tailwindcss/colors');
+
 module.exports = {
 	darkMode: ["class"],
 	content: [
@@ -11,8 +13,8 @@ module.exports = {
 	theme: {
 	  extend: {
 		fontFamily: {
-		  sans: ['var(--font-outfit)', 'system-ui', 'sans-serif'],
-		  heading: ['var(--font-space-grotesk)', 'sans-serif'],
+		  sans: ['Helvetica Neue', 'system-ui', 'sans-serif'],
+		  heading: ['Helvetica Neue', 'sans-serif'],
 		},
 		fontSize: {
 		  // Custom type scale for more precise typography control
@@ -48,6 +50,9 @@ module.exports = {
 		  loose: '2',
 		},
 		colors: {
+		  emerald: colors.emerald,
+		  teal: colors.teal,
+		  gray: colors.gray,
 		  border: "hsl(var(--border))",
 		  input: "hsl(var(--input))",
 		  ring: "hsl(var(--ring))",

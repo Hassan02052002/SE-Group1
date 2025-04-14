@@ -38,7 +38,6 @@ def call_llama3_api(question, context=""):
     else:
         return f"Error: {response.status_code} - {response.text}"
 
-# Function to generate a travel itinerary
 def generate_nomad_response(destination, budget, preferences):
     user_question = f"Generate a travel plan for {destination} with a budget of {budget}. Preferences: {', '.join(preferences)}."
     

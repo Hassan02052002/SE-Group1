@@ -24,7 +24,7 @@ export default function LoginPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await axios.post("http://127.0.0.1:8000/auth/login", { email, password });
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/login`, { email, password });
       localStorage.setItem("token", res.data.token);
       router.push("/dashboard");
     } catch {
@@ -143,7 +143,7 @@ export default function LoginPage() {
 
             {/* Login Button */}
             <Button 
-              className={`w-full py-6 ${primaryButton()}`}
+              className={`w-full py-6 ${primaryButton()} hover:scale-[1.01] transition-transform duration-300`}
               onClick={handleLogin}
               disabled={loading}
             >

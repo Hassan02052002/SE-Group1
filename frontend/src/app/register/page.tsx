@@ -30,7 +30,7 @@ export default function RegisterPage() {
     setError("");
     setLoading(true);
     try {
-      const res = await axios.post("http://127.0.0.1:8000/auth/register", { name, email, password });
+      const res = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/auth/register`, { name, email, password });
       localStorage.setItem("token", res.data.token);
       router.push("/dashboard");
     } catch {

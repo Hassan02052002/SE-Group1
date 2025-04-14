@@ -6,15 +6,15 @@
  */
 export const colors = {
     primary: {
-      main: 'emerald', // Key color name (used in tailwind classes like bg-emerald-600)
+      // Key color name (used in tailwind classes like bg-emerald-600)
       gradient: {
-        from: 'emerald-600',
-        to: 'teal-700',
+        from: 'emerald-400',
+        to: 'teal-500',
         hover: {
-          from: 'emerald-700',
-          to: 'teal-800'
+          from: 'emerald-600', // Adjusted to ensure visibility
+          to: 'teal-700'      // Adjusted to ensure visibility
         }
-      }
+      } as const // Ensure these values are treated as constants
     },
     secondary: {
       main: 'gray',
