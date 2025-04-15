@@ -74,7 +74,7 @@ export default function ItineraryPage() {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/ai/generate",
+        "https://se-group1.onrender.com/ai/generate",
         {
           destination,
           budget: parseInt(budget),
