@@ -107,7 +107,7 @@ const ABOUT_DATA = {
         name: "Ryef Taimur",
         role: "CFO",
         bio: "Ensuring financial growth and sustainability with a strong grasp on strategic investment and budgeting.",
-        color: "purple"
+        color: "blue"
     }
     ]
   },
