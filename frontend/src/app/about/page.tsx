@@ -74,27 +74,41 @@ const ABOUT_DATA = {
   team: {
     title: "Meet Our Team",
     members: [
-      {
+    {
+        initials: "HY",
+        name: "Hamza Yoshida",
+        role: "President",
+        bio: "Guiding Nomad’s global direction with experience in leadership, community building, and global outreach.",
+        color: "cyan"
+    },
+    {
         initials: "HI",
         name: "Hassan Imran",
-        role: "Business Development Lead",
-        bio: "Travel enthusiast with over 60 countries visited. Passionate about connecting people through shared experiences.",
+        role: "CTO",
+        bio: "Leading the technological backbone of Nomad with a vision for innovation and scalable infrastructure.",
         color: "emerald"
-      },
-      {
-        initials: "MP",
+    },
+    {
+        initials: "AH",
         name: "Ahmed Hassan",
-        role: "Head of Technology",
-        bio: "AI specialist focusing on creating personalized travel experiences through innovative technology solutions.",
+        role: "CEO",
+        bio: "Visionary founder focused on driving strategy, growth, and redefining travel through leadership.",
         color: "teal"
-      },
-      {
-        initials: "HY",
-        name: "Hamza Youshida",
-        role: "Community Director",
-        bio: "Former tour guide with extensive knowledge of global cultures and a passion for sustainable tourism.",
-        color: "cyan"
-      }
+    },
+    {
+        initials: "MU",
+        name: "Mishaal Usman",
+        role: "Marketing Lead",
+        bio: "Crafting compelling campaigns and brand stories to connect Nomad with audiences worldwide.",
+        color: "blue"
+    },
+    {
+        initials: "RT",
+        name: "Ryef Taimur",
+        role: "CFO",
+        bio: "Ensuring financial growth and sustainability with a strong grasp on strategic investment and budgeting.",
+        color: "purple"
+    }
     ]
   },
   contact: {
@@ -276,18 +290,31 @@ export default function AboutPage() {
                         {ABOUT_DATA.team.title}
                     </h2>
                     
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                        {ABOUT_DATA.team.members.map((member, index) => (
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {ABOUT_DATA.team.members.slice(0, 3).map((member, index) => (
                             <div key={index} className={cardStyle("p-6 rounded-2xl", true)}>
-                                <div className={`w-24 h-24 bg-${member.color}-900/30 rounded-full flex items-center justify-center mx-auto mb-4`}>
-                                    <span className={`text-2xl ${typography.fontFamily.heading} font-bold text-${member.color}-400`}>{member.initials}</span>
-                                </div>
-                                <h3 className={`text-xl ${typography.fontFamily.heading} font-bold mb-2`}>{member.name}</h3>
-                                <p className={`text-${member.color}-400 mb-4`}>{member.role}</p>
-                                <p className="text-gray-400 text-sm">{member.bio}</p>
+                            <div className={`w-24 h-24 bg-${member.color}-900/30 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                                <span className={`text-2xl ${typography.fontFamily.heading} font-bold text-${member.color}-400`}>{member.initials}</span>
+                            </div>
+                            <h3 className={`text-xl ${typography.fontFamily.heading} font-bold mb-2`}>{member.name}</h3>
+                            <p className={`text-${member.color}-400 mb-4`}>{member.role}</p>
+                            <p className="text-gray-400 text-sm">{member.bio}</p>
                             </div>
                         ))}
-                    </div>
+                        </div>
+
+                        <div className="flex flex-col md:flex-row justify-center gap-8 mt-8">
+                        {ABOUT_DATA.team.members.slice(3).map((member, index) => (
+                            <div key={index} className={`${cardStyle("p-6 rounded-2xl", true)} w-full md:w-1/3`}>
+                            <div className={`w-24 h-24 bg-${member.color}-900/30 rounded-full flex items-center justify-center mx-auto mb-4`}>
+                                <span className={`text-2xl ${typography.fontFamily.heading} font-bold text-${member.color}-400`}>{member.initials}</span>
+                            </div>
+                            <h3 className={`text-xl ${typography.fontFamily.heading} font-bold mb-2`}>{member.name}</h3>
+                            <p className={`text-${member.color}-400 mb-4`}>{member.role}</p>
+                            <p className="text-gray-400 text-sm">{member.bio}</p>
+                            </div>
+                        ))}
+                        </div>
                 </div>
             </div>
             
