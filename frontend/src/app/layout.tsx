@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { Outfit, Space_Grotesk } from "next/font/google";
+import { DM_Sans, Space_Grotesk } from "next/font/google";
 import Navbar from "@/components/Navbar";
 
 import "./globals.css";
 
-// Primary font for body text - Outfit is modern, clean and highly legible
-const outfit = Outfit({
-  variable: "--font-outfit",
+// Primary font for body text - DM Sans is modern, clean and highly legible
+const dmSans = DM_Sans({
+  variable: "--font-dm-sans",
   subsets: ["latin"],
   display: "swap",
 });
@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${outfit.variable} ${spaceGrotesk.variable} font-sans antialiased bg-gray-950 text-white`}
+        className={`${dmSans.variable} ${spaceGrotesk.variable} font-sans antialiased bg-gray-950 text-white`}
       >
         <Navbar />
         {children}

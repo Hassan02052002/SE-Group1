@@ -74,7 +74,7 @@ export default function ItineraryPage() {
 
     try {
       const res = await axios.post(
-        "http://127.0.0.1:8000/ai/generate",
+        `${process.env.NEXT_PUBLIC_API_URL}/ai/generate`,
         {
           destination,
           budget: parseInt(budget),

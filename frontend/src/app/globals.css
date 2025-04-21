@@ -3,20 +3,47 @@
 @tailwind utilities;
 
 :root {
+  --font-dm-sans: 'DM Sans', system-ui, sans-serif;
+  --font-space-grotesk: 'Space Grotesk', system-ui, sans-serif;
   --foreground-rgb: 255, 255, 255;
   --background-start-rgb: 0, 0, 0;
   --background-end-rgb: 0, 0, 0;
 }
 
+/* Add this at the top of globals.css */
+
+/* DM Sans Font */
+@font-face {
+  font-family: 'DM Sans';
+  src: url('/fonts/static/DM_Sans-Regular.ttf') format('truetype'),
+       url('/fonts/static/DM_Sans-Bold.ttf') format('truetype'),
+       url('/fonts/static/DM_Sans-Medium.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Space Grotesk Font */
+@font-face {
+  font-family: 'Space Grotesk';
+  src: url('/fonts/static/SpaceGrotesk-Regular.ttf') format('truetype'),
+       url('/fonts/static/SpaceGrotesk-Medium.ttf') format('truetype'),
+       url('/fonts/static/SpaceGrotesk-Bold.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+
 @layer base {
   /* Base typography settings */
   html {
-    font-family: var(--font-outfit), system-ui, sans-serif;
+    font-family: var(--font-dm-sans), system-ui, sans-serif; /* Updated to use DM Sans */
   }
   
   /* Apply heading font to all headings */
   h1, h2, h3, h4, h5, h6 {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: var(--font-space-grotesk), system-ui, sans-serif; /* Updated to use Space Grotesk */
     font-weight: 300;
     line-height: 1.2;
     letter-spacing: -0.02em;
@@ -40,17 +67,18 @@
   
   /* Body text */
   p {
-    font-family: var(--font-outfit), system-ui, sans-serif;
+    font-family: var(--font-dm-sans), system-ui, sans-serif; /* Updated to use DM Sans */
     line-height: 1.6;
     margin-bottom: 1rem;
   }
   
   /* Button text */
   button, .button {
-    font-family: var(--font-outfit), system-ui, sans-serif;
+    font-family: var(--font-dm-sans), system-ui, sans-serif; /* Updated to use DM Sans */
     font-weight: 500;
   }
 }
+
 
 /* Typography utility classes */
 .font-heading {
@@ -58,8 +86,9 @@
 }
 
 .font-body {
-  font-family: var(--font-outfit), system-ui, sans-serif;
+  font-family: var(--font-dm-sans), system-ui, sans-serif;
 }
+
 
 /* Text size utility classes for more control */
 .text-display {

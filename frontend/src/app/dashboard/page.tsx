@@ -101,7 +101,7 @@ export default function DashboardPage() {
     if (!token) {
       router.push("/login"); // Redirect if not logged in
     } else {
-      console.log("API URL Dashboard:", process.env.NEXT_PUBLIC_API_URL);
+      // console.log("API URL Dashboard:", process.env.NEXT_PUBLIC_API_URL);
       setLoading(true);
 
       axios
