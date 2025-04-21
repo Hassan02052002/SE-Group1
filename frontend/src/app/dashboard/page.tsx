@@ -20,7 +20,7 @@ const DUMMY_DESTINATIONS = [
   {
     id: 2,
     country: "Italy",
-    city: "Venice",
+    city: "Rome",
     code: "IT",
     status: "Popular",
     color: "emerald"
@@ -35,9 +35,9 @@ const DUMMY_DESTINATIONS = [
   },
   {
     id: 4,
-    country: "Iceland",
-    city: "Reykjavik",
-    code: "IS",
+    country: "USA",
+    city: "New York",
+    code: "NYC",
     status: "New destination",
     color: "blue"
   }
@@ -132,6 +132,12 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 text-white">
+      {/* Yoshida Vote Banner */}
+      <div className="mt-24 w-full py-4 text-center z-20 relative bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-cyan-500 via-blue-600 to-indigo-500 animate-pulse shadow-2xl shadow-cyan-800/40 border-y border-cyan-400/30">
+        <h1 className="text-4xl font-extrabold text-white tracking-wide uppercase animate-bounce">
+          🗳️ Vote for <span className="text-yellow-300 drop-shadow-lg">Yoshida!</span>
+        </h1>
+      </div>
       <main className="pt-36 px-6 pb-12 max-w-7xl mx-auto">
         {/* User Welcome Section */}
         <div className={cardStyle("mb-12 p-8")}>
@@ -222,27 +228,29 @@ export default function DashboardPage() {
                 )}
               </div>
               
-              <div className="space-y-4 max-h-64 overflow-y-auto pr-2 custom-scrollbar">
-                {destinations.length === 0 ? (
-                  <div className="flex items-center justify-center h-32 bg-gray-800/30 rounded-lg">
-                    <p className="text-gray-500">Loading destinations...</p>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {destinations.map((destination) => (
+                  <div 
+                  key={destination.id}
+                  className="rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer bg-gray-900"
+                >
+                  {/* Text above image */}
+                  <div className="px-4 pt-4 pb-2">
+                    <p className="text-white text-lg font-bold">{destination.city}, {destination.country}</p>
+                    <p className="text-sm text-gray-400">{destination.status}</p>
                   </div>
-                ) : (
-                  destinations.map((destination) => (
-                    <div 
-                      key={destination.id}
-                      className="flex items-center p-3 bg-gray-800/50 rounded-lg hover:bg-gray-800 transition-colors cursor-pointer"
-                    >
-                      <div className={`w-10 h-10 rounded-full bg-${destination.color}-900/50 flex items-center justify-center mr-3`}>
-                        <span className={`text-${destination.color}-400 text-xs ${typography.fontFamily.heading} font-bold`}>{destination.code}</span>
-                      </div>
-                      <div>
-                        <p className={`${typography.fontFamily.heading} font-medium`}>{destination.city}, {destination.country}</p>
-                        <p className="text-xs text-gray-500">{destination.status}</p>
-                      </div>
-                    </div>
-                  ))
-                )}
+                
+                  {/* Image card */}
+                  <div className="relative h-48">
+                    <img 
+                      src={`/images/${destination.city.toLowerCase().replace(/\s+/g, "")}.jpg`}
+                      alt={`${destination.city}, ${destination.country}`}
+                      className="object-cover w-full h-full"
+                    />
+                    <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition duration-300"></div>
+                  </div>
+                </div>
+                ))}
               </div>
               
               <ThemedButton 
