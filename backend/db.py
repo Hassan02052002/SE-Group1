@@ -14,6 +14,8 @@ client = MongoClient(MONGO_URI)
 print(client.list_database_names())
 db = client["Nomad"]  
 users_collection = db["users"]  # Collection for storing users
+itineraries_collection = db["itineraries"]
+
 # Check if connection to MongoDB is established
 try:
 	# The ping command is cheap and does not require auth.

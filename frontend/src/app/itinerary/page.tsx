@@ -1,7 +1,8 @@
 "use client";
 
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import { MapPin, DollarSign, Plane, Calendar, Tag, ArrowLeft, Clock, Save, RefreshCw } from "lucide-react";
 import { ThemedButton } from "@/components/ui/theme-button";
 import { cardStyle, gradientText, typography } from "@/lib/theme";
@@ -41,6 +42,8 @@ export default function ItineraryPage() {
   const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(false);
   const [showPreferenceSuggestions, setShowPreferenceSuggestions] = useState(false);
   
+  const router = useRouter();
+
   const formatItinerary = (text: string) => {
     return text
       .replace(/\*\*/g, '')
@@ -50,6 +53,7 @@ export default function ItineraryPage() {
   };
 
   const handleGenerate = async () => {
+    
     if (!destination || !budget) {
       // Use a more elegant notification
       const missingFields = [];
@@ -96,29 +100,54 @@ export default function ItineraryPage() {
   };
 
   const handleSaveItinerary = async () => {
-  try {
-    console.log("Saving itinerary with the following details:");
-    console.log("Email:", localStorage.getItem("userEmail") || 'unknown');
-    console.log("Itinerary:", itinerary || 'N/A');
-
-    const response = await fetch('/api/save-itinerary', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-      email: localStorage.getItem("userEmail") || 'unknown', // Fetch user's email from localStorage or use a default
-      itinerary: itinerary || 'N/A',
-      }),
-    });
-
-    const data = await response.json();
-    if (!response.ok) throw new Error(data.detail || 'Save failed');
-
-    alert('Itinerary saved!');
-  } catch (err) {
-    console.error(err);
-    alert('Failed to save itinerary.');
-  }
-};
+    try {
+      const token = localStorage.getItem("token");
+  
+      if (!token) {
+        alert("You must be logged in to save.");
+        return;
+      }
+  
+      // Fetch user details using token (same as in handleGenerate)
+      const userResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/auth/me`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+  
+      const user = userResponse.data;
+      const email = user?.email;
+  
+      if (!email) {
+        alert("Could not fetch user email.");
+        return;
+      }
+  
+      // Save itinerary
+      const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/itinerary/save-itinerary`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json',
+                   'Authorization': `Bearer ${token}`,
+         },
+        body: JSON.stringify({
+          email: email,
+          itinerary: itinerary || 'N/A',
+          // Add more fields if needed, like title or days etc
+        }),
+      });
+  
+      const data = await response.json();
+      if (!response.ok) {
+        const text = await response.text();
+        console.error("Response Text:", text);
+        throw new Error(data.detail || 'Save failed');
+      }
+  
+      alert('Itinerary saved!');
+    } catch (err) {
+      console.error("Save error:", err);
+      alert('Failed to save itinerary.');
+    }
+  };
+  
 
 
   const handleKeyDown = (e: { key: string; }) => {
