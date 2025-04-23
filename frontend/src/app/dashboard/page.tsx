@@ -319,7 +319,7 @@ export default function DashboardPage() {
                 onClick={() => router.push("/itineraries")}
                 className="hover:translate-y-1"
               >
-                View Travel History
+                View Saved Itineraries
               </ThemedButton>
             </div>
           </div>

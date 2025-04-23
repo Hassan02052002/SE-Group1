@@ -1,8 +1,7 @@
 "use client";
 
-import { SetStateAction, useState, useEffect } from "react";
+import { SetStateAction, useState} from "react";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import { MapPin, DollarSign, Plane, Calendar, Tag, ArrowLeft, Clock, Save, RefreshCw } from "lucide-react";
 import { ThemedButton } from "@/components/ui/theme-button";
 import { cardStyle, gradientText, typography } from "@/lib/theme";
@@ -42,7 +41,7 @@ export default function ItineraryPage() {
   const [showDestinationSuggestions, setShowDestinationSuggestions] = useState(false);
   const [showPreferenceSuggestions, setShowPreferenceSuggestions] = useState(false);
   
-  const router = useRouter();
+  // const router = useRouter();
 
   const formatItinerary = (text: string) => {
     return text
