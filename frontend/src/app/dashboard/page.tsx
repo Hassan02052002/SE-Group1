@@ -133,11 +133,11 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 text-white">
       {/* Yoshida Vote Banner */}
-      {/* <div className="mt-24 w-full py-4 text-center z-20 relative bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-cyan-500 via-blue-600 to-indigo-500 animate-pulse shadow-2xl shadow-cyan-800/40 border-y border-cyan-400/30">
+      <div className="mt-24 w-full py-4 text-center z-20 relative bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-cyan-500 via-blue-600 to-indigo-500 animate-pulse shadow-2xl shadow-cyan-800/40 border-y border-cyan-400/30">
         <h1 className="text-4xl font-extrabold text-white tracking-wide uppercase animate-bounce">
           🗳️ Vote for <span className="text-yellow-300 drop-shadow-lg">Yoshida!</span>
         </h1>
-      </div> */}
+      </div>
       <main className="pt-36 px-6 pb-12 max-w-7xl mx-auto">
         {/* User Welcome Section */}
         <div className={cardStyle("mb-12 p-8")}>
