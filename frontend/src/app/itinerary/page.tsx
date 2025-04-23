@@ -95,6 +95,32 @@ export default function ItineraryPage() {
     setLoading(false);
   };
 
+  const handleSaveItinerary = async () => {
+  try {
+    console.log("Saving itinerary with the following details:");
+    console.log("Email:", localStorage.getItem("userEmail") || 'unknown');
+    console.log("Itinerary:", itinerary || 'N/A');
+
+    const response = await fetch('/api/save-itinerary', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+      email: localStorage.getItem("userEmail") || 'unknown', // Fetch user's email from localStorage or use a default
+      itinerary: itinerary || 'N/A',
+      }),
+    });
+
+    const data = await response.json();
+    if (!response.ok) throw new Error(data.detail || 'Save failed');
+
+    alert('Itinerary saved!');
+  } catch (err) {
+    console.error(err);
+    alert('Failed to save itinerary.');
+  }
+};
+
+
   const handleKeyDown = (e: { key: string; }) => {
     if (e.key === 'Enter') {
       handleGenerate();
@@ -402,6 +428,13 @@ export default function ItineraryPage() {
                   >
                     Save Itinerary
                   </ThemedButton>
+                  <button
+                    className="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 transition"
+                    onClick={handleSaveItinerary}
+                  >
+                    Save Itinerary
+                  </button>
+
                   <ThemedButton 
                     themeVariant="secondary"
                     className="flex-1"
