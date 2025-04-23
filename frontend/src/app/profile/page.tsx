@@ -3,12 +3,13 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { cardStyle, gradientText, typography } from "@/lib/theme";
+import Image from "next/image";
+import { LogOut, UploadCloud } from "lucide-react";
 import { ThemedButton } from "@/components/ui/theme-button";
-import { User, Mail, LogOut } from "lucide-react";
+import { cardStyle, gradientText, typography } from "@/lib/theme";
 
 export default function ProfilePage() {
-  const [user, setUser] = useState<{ name: string; email: string } | null>(null);
+  const [user, setUser] = useState<{ name: string; email: string; avatar?: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const router = useRouter();
 
@@ -39,6 +40,10 @@ export default function ProfilePage() {
     router.push("/login");
   };
 
+  const handleUploadClick = () => {
+    router.push("/profile/upload");
+  };
+
   if (loading) {
     return (
       <div className="flex h-screen w-full items-center justify-center bg-gray-950">
@@ -49,36 +54,39 @@ export default function ProfilePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 text-white">
-      <main className="pt-36 px-6 pb-12 max-w-3xl mx-auto">
-        <div className={cardStyle("p-8 text-center")}>
-          <div className="mb-6">
-            <h1 className={`text-4xl font-bold ${typography.fontFamily.heading}`}>
-              Hello, <span className={gradientText()}>{user?.name}</span>
-            </h1>
-            <p className="text-gray-400 mt-2">{user?.email}</p>
+      <main className="pt-36 px-6 pb-12 max-w-md mx-auto">
+        <div className={cardStyle("p-8 text-center flex flex-col items-center")}>
+          <div className="relative group w-24 h-24">
+            <Image
+              src={user?.avatar || "/profile.svg"}
+              alt="Profile"
+              fill
+              className="rounded-full object-cover border border-gray-700 shadow-md"
+            />
+            <button
+              onClick={handleUploadClick}
+              className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 flex items-center justify-center rounded-full transition-opacity"
+              title="Upload New Picture"
+            >
+              <UploadCloud className="text-white h-5 w-5" />
+            </button>
           </div>
 
-          <div className="flex flex-col items-center gap-4">
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <User className="h-4 w-4 text-emerald-400" />
-              <span>Name:</span>
-              <span className="text-white font-medium">{user?.name}</span>
-            </div>
-            <div className="flex items-center gap-2 text-sm text-gray-400">
-              <Mail className="h-4 w-4 text-cyan-400" />
-              <span>Email:</span>
-              <span className="text-white font-medium">{user?.email}</span>
-            </div>
-          </div>
+          <h1 className={`text-3xl font-semibold mt-6 ${typography.fontFamily.heading}`}>
+            Hello, <span className={gradientText()}>{user?.name}</span>
+          </h1>
+          <p className="text-gray-400 mt-1">{user?.email}</p>
 
-          <ThemedButton
-            themeVariant="outline"
-            icon={<LogOut className="h-5 w-5" />}
-            className="mt-8"
-            onClick={handleLogout}
-          >
-            Log out
-          </ThemedButton>
+          <div className="flex flex-col gap-4 mt-8 w-full">
+            <ThemedButton
+              themeVariant="outline"
+              icon={<LogOut className="h-5 w-5" />}
+              onClick={handleLogout}
+              className="w-full flex items-center justify-center"
+            >
+              Log out
+            </ThemedButton>
+          </div>
         </div>
       </main>
     </div>

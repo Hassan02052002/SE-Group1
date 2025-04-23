@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { Button } from "@/components/ui/button";
 
+
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -91,9 +92,12 @@ export default function Navbar() {
             {user && (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" className="flex items-center gap-2 px-2 py-1 hover:bg-gray-800">
+                  <Button
+                    variant="ghost"
+                    className="flex items-center gap-2 px-2 py-1 hover:bg-gray-800 rounded-[8px] transition-colors"
+                  >
                     <Image
-                      src={user.avatar || "/default-avatar.png"}
+                      src={user.avatar || "/profile.svg"}
                       alt="Profile"
                       width={32}
                       height={32}
@@ -102,9 +106,19 @@ export default function Navbar() {
                     <span className="text-white text-sm">{user.name}</span>
                   </Button>
                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="w-44 mt-2">
-                  <DropdownMenuItem onClick={() => router.push("/profile")}>View Profile</DropdownMenuItem>
-                  <DropdownMenuItem onClick={handleLogout}>Logout</DropdownMenuItem>
+                <DropdownMenuContent className="w-44 mt-2 rounded-[8px] shadow-lg">
+                  <DropdownMenuItem
+                    className="cursor-pointer bg-gray-900 hover:bg-gray-700 hover:text-white transition-colors px-4 py-2 rounded-md"
+                    onClick={() => router.push("/profile")}
+                  >
+                    Profile
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    className="cursor-pointer bg-gray-900 hover:bg-gray-700 hover:text-white transition-colors px-4 py-2 rounded-md"
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </DropdownMenuItem>
                 </DropdownMenuContent>
               </DropdownMenu>
             )}

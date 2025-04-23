@@ -1,9 +1,7 @@
-from pymongo import MongoClient
-from dotenv import load_dotenv
-import os
+from pydantic import BaseModel, EmailStr
+from typing import Optional
 
-load_dotenv()
-client = MongoClient(os.getenv("MONGODB_URI"))
-db = client["travel_itinerary"]
-
-users_collection = db["users"]
+class User(BaseModel):
+    name: str
+    email: EmailStr
+    avatar: Optional[str] = None  # Base64-encoded string or image URL if stored separately
