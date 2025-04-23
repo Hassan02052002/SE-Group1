@@ -47,7 +47,7 @@ export default function Navbar() {
   }, []);
 
   const hiddenPages = ["/login", "/signup", "/admin"];
-  const allowedPages = ["/dashboard", "/itinerary", "/about", "/profile"];
+  const allowedPages = ["/dashboard", "/itinerary", "/about", "/profile", "/itineraries"];
 
   if (hiddenPages.includes(pathname)) return null;
   if (allowedPages.length > 0 && !allowedPages.includes(pathname)) return null;

@@ -22,16 +22,19 @@ const ItinerariesPage = () => {
 
   const fetchItineraries = async (token: string) => {
     try {
-      const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/itinerary/saved-itineraries`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      if(response.status !== 200) {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_API_URL}/itinerary/saved-itineraries`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (response.status !== 200) {
         console.log("Error fetching itineraries:", response.statusText);
         throw new Error("Failed to fetch itineraries");
       }
-      setItineraries(response.data); // Set itineraries data from backend response
+      setItineraries(response.data);
     } catch (error) {
       console.error("Error fetching itineraries:", error);
       setError("Failed to fetch itineraries. Please try again.");
@@ -40,30 +43,30 @@ const ItinerariesPage = () => {
   };
 
   return (
-    <div className="container mx-auto p-4">
-      <h1 className="text-2xl font-bold mb-4">Your Saved Itineraries</h1>
+    <main className="max-w-4xl mx-auto p-6">
+      <h1 className="text-3xl font-semibold mb-6 text-center">Your Saved Itineraries</h1>
 
       {loading ? (
-        <p>Loading...</p>
+        <p className="text-center">Loading...</p>
       ) : error ? (
-        <p className="text-red-600">{error}</p>
+        <p className="text-red-600 text-center">{error}</p>
       ) : itineraries.length === 0 ? (
-        <p>No saved itineraries found.</p>
+        <p className="text-center text-gray-500">No saved itineraries found.</p>
       ) : (
-        <div>
-          <ul className="space-y-4">
-            {itineraries.map((itinerary: any, index: number) => (
-              <li key={index} className="p-4 border rounded-md shadow-md">
-                <div className="whitespace-pre-line">
-                    {itinerary.itinerary}
-                    </div>
-
-              </li>
-            ))}
-          </ul>
+        <div className="grid gap-6">
+          {itineraries.map((itinerary: any, index: number) => (
+            <div
+              key={index}
+              className="border rounded-xl p-4 bg-white shadow-md hover:shadow-lg transition duration-200"
+            >
+              <div className="whitespace-pre-line text-gray-800 text-sm">
+                {itinerary.itinerary}
+              </div>
+            </div>
+          ))}
         </div>
       )}
-    </div>
+    </main>
   );
 };
 

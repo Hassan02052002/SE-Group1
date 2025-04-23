@@ -316,7 +316,7 @@ export default function DashboardPage() {
               <ThemedButton 
                 themeVariant="primary"
                 icon={<Globe className="h-5 w-5" />}
-                onClick={() => router.push("/trips")}
+                onClick={() => router.push("/itineraries")}
                 className="hover:translate-y-1"
               >
                 View Travel History

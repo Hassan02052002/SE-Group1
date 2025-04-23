@@ -15,9 +15,9 @@
 /* DM Sans Font */
 @font-face {
   font-family: 'DM Sans';
-  src: url('/fonts/static/DM_Sans-Regular.ttf') format('truetype'),
-       url('/fonts/static/DM_Sans-Bold.ttf') format('truetype'),
-       url('/fonts/static/DM_Sans-Medium.ttf') format('truetype');
+  src: url('/fonts/DMSans-Regular.ttf') format('truetype'),
+       url('/fonts/DMSans-Bold.ttf') format('truetype'),
+       url('/fonts/DMSans-Medium.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
@@ -26,9 +26,9 @@
 /* Space Grotesk Font */
 @font-face {
   font-family: 'Space Grotesk';
-  src: url('/fonts/static/SpaceGrotesk-Regular.ttf') format('truetype'),
-       url('/fonts/static/SpaceGrotesk-Medium.ttf') format('truetype'),
-       url('/fonts/static/SpaceGrotesk-Bold.ttf') format('truetype');
+  src: url('/fonts/SpaceGrotesk-Regular.ttf') format('truetype'),
+       url('/fonts/SpaceGrotesk-Medium.ttf') format('truetype'),
+       url('/fonts/SpaceGrotesk-Bold.ttf') format('truetype');
   font-weight: 400;
   font-style: normal;
   font-display: swap;
