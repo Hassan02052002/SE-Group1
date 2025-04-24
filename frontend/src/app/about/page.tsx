@@ -6,6 +6,7 @@ import { ThemedButton } from "@/components/ui/theme-button";
 // import { ThemedInput } from "@/components/ui/themed-input";
 import { cardStyle, gradientText, typography } from "@/lib/theme";
 import { useState } from "react";
+import InteractiveGlobe from "@/components/InteractiveGlobe";
 
 // Dynamic data for the About page
 const ABOUT_DATA = {
@@ -201,19 +202,27 @@ export default function AboutPage() {
                     </p>
                     
                     <div className="flex flex-wrap justify-center gap-4 mb-16">
-                        {ABOUT_DATA.hero.buttons.map((button, index) => (
-                            <ThemedButton 
-                                key={index}
-                                themeVariant={button.variant as "primary" | "secondary" | "outline"}
-                                className="flex items-center gap-2"
-                            >
-                                {renderIcon(button.icon, 20)}
-                                <span>{button.text}</span>
-                            </ThemedButton>
-                        ))}
-                    </div>
+                    <div className="flex justify-center mb-16">
+  <ThemedButton 
+    themeVariant="primary"
+    className="flex items-center gap-2 px-8 py-4 text-lg"
+    onClick={() => window.open("https://www.instagram.com/sust.ai.n/", "_blank")}
+  >
+    {renderIcon("Users", 24)}
+    <span>Join Our Community</span>
+  </ThemedButton>
+</div>
+
+
+</div>
                 </div>
             </div>
+
+            {/* Interactive Globe Section */}
+           <section className="py-16">
+           <h2 className="text-3xl font-bold text-center mb-6">Where Our Nomads Are</h2>
+           <InteractiveGlobe />
+           </section>
             
             {/* Mission Section */}
             <div className="py-16 bg-gray-950/80">
