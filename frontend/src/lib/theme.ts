@@ -148,5 +148,7 @@ export const colors = {
    * @param additionalClasses - Any additional classes to add
    * @returns CSS class string for card
    */
-  export const cardStyle = (additionalClasses = '', hoverable = false) => 
-    `${elements.card.default} ${hoverable ? elements.card.hover : ''} ${additionalClasses}`;
+  export const cardStyle = (extra = "", hoverable = false) =>
+  `relative rounded-xl bg-gray-900/60 border border-gray-800 shadow-lg p-6 transition-all duration-300 ease-in-out 
+   ${hoverable ? "hover:border-2 hover:border-transparent hover:bg-gray-900/80 hover:shadow-xl hover:scale-[1.01] hover:bg-gradient-to-r hover:from-cyan-500/10 hover:to-indigo-500/10" : ""} 
+   ${extra}`;

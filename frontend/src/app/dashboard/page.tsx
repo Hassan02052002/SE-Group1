@@ -38,7 +38,7 @@ const DUMMY_DESTINATIONS = [
     country: "USA",
     city: "New York",
     code: "NYC",
-    status: "New destination",
+    status: "New",
     color: "blue"
   }
 ];
@@ -132,13 +132,13 @@ export default function DashboardPage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 text-white">
-      {/* Yoshida Vote Banner */}
-      <div className="mt-24 w-full py-4 text-center z-20 relative bg-[conic-gradient(at_top_left,_var(--tw-gradient-stops))] from-cyan-500 via-blue-600 to-indigo-500 animate-pulse shadow-2xl shadow-cyan-800/40 border-y border-cyan-400/30">
-        <h1 className="text-4xl font-extrabold text-white tracking-wide uppercase animate-bounce">
-          🗳️ Vote for <span className="text-yellow-300 drop-shadow-lg">Yoshida!</span>
-        </h1>
-      </div>
       <main className="pt-36 px-6 pb-12 max-w-7xl mx-auto">
+        {/* Yoshida Vote Banner */}
+        <div className="w-full py-3 px-4 text-center relative z-50 bg-gradient-to-r from-gray-950 via-sky-800 to-gray-950 shadow-md border-b border-sky-800/30 mt-[4.5rem]">
+          <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-yellow-300 to-amber-500 animate-pulse uppercase">
+            🗳️ Vote for Yoshida!
+          </h1>
+        </div>
         {/* User Welcome Section */}
         <div className={cardStyle("mb-12 p-8")}>
           <div className="flex flex-col md:flex-row md:items-center justify-between">
@@ -241,11 +241,11 @@ export default function DashboardPage() {
                   </div>
                 
                   {/* Image card */}
-                  <div className="relative h-48">
+                  <div className="relative aspect-[4/3] w-full overflow-hidden rounded-b-xl">
                     <img 
                       src={`/images/${destination.city.toLowerCase().replace(/\s+/g, "")}.jpg`}
                       alt={`${destination.city}, ${destination.country}`}
-                      className="object-cover w-full h-full"
+                      className="object-cover w-full h-full transition-transform duration-300 hover:scale-105"
                     />
                     <div className="absolute inset-0 bg-black/30 group-hover:bg-black/50 transition duration-300"></div>
                   </div>
