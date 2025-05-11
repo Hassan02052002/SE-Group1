@@ -14,22 +14,13 @@ const DUMMY_DESTINATIONS = [
   { id: 4, country: "USA", city: "New York", code: "NYC", status: "New", color: "blue" }
 ];
 
-const DUMMY_TRIPS = {
-  total: 5,
-  countries: 8,
-  upcoming: 2,
-  recent: []
-};
-
 export default function DashboardPage() {
   const [user, setUser] = useState<{ name: string; email: string } | null>(null);
   const [loading, setLoading] = useState(true);
   const [destinations, setDestinations] = useState(DUMMY_DESTINATIONS);
-  const [trips, setTrips] = useState(DUMMY_TRIPS);
   const router = useRouter();
 
   const fetchDestinations = () => setTimeout(() => setDestinations(DUMMY_DESTINATIONS), 500);
-  const fetchTrips = () => setTimeout(() => setTrips(DUMMY_TRIPS), 700);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -44,7 +35,6 @@ export default function DashboardPage() {
         .then((res) => {
           setUser(res.data);
           fetchDestinations();
-          fetchTrips();
           setLoading(false);
         })
         .catch(() => {
@@ -165,31 +155,17 @@ export default function DashboardPage() {
             </div>
           </div>
 
+          {/* Travel Overview block (minimal, no hardcoded data) */}
           <div className={cardStyle("md:col-span-2 group relative overflow-hidden", true)}>
             <div className="absolute inset-0 bg-gradient-to-br from-blue-900/10 to-indigo-900/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             <div className="absolute top-0 left-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl"></div>
 
             <div className="relative p-8">
-              <h3 className={`text-xl ${typography.fontFamily.heading} font-bold mb-4`}>Your Travel Overview</h3>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
-                <div className="bg-gray-800/50 p-4 rounded-xl">
-                  <p className="text-gray-400 text-sm mb-1">Total Trips</p>
-                  <p className={`text-2xl ${typography.fontFamily.heading} font-bold`}>{trips.total}</p>
-                </div>
-                <div className="bg-gray-800/50 p-4 rounded-xl">
-                  <p className="text-gray-400 text-sm mb-1">Countries</p>
-                  <p className={`text-2xl ${typography.fontFamily.heading} font-bold`}>{trips.countries}</p>
-                </div>
-                <div className="bg-gray-800/50 p-4 rounded-xl">
-                  <p className="text-gray-400 text-sm mb-1">Upcoming</p>
-                  <p className={`text-2xl ${typography.fontFamily.heading} font-bold`}>{trips.upcoming}</p>
-                </div>
-              </div>
+              <h3 className={`text-xl ${typography.fontFamily.heading} font-bold mb-6`}>Your Travel Overview</h3>
 
               <div className="bg-gray-800/30 p-6 rounded-xl mb-6">
-                <p className="text-lg italic text-gray-300 mb-2">“Travel is the only thing you buy that makes you richer.”</p>
-                <p className="text-sm text-gray-500 text-right">— Unknown</p>
+                <p className="text-lg italic text-gray-300 mb-2">“To travel is to live.”</p>
+                <p className="text-sm text-gray-500 text-right">— Hans Christian Andersen</p>
               </div>
 
               <ThemedButton
