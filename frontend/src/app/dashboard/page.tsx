@@ -18,11 +18,7 @@ const DUMMY_TRIPS = {
   total: 5,
   countries: 8,
   upcoming: 2,
-  recent: [
-    { id: 1, destination: "Barcelona, Spain", date: "March 15 - March 22, 2025", status: "upcoming" },
-    { id: 2, destination: "Amsterdam, Netherlands", date: "January 5 - January 12, 2025", status: "completed" },
-    { id: 3, destination: "Prague, Czech Republic", date: "October 10 - October 17, 2024", status: "completed" }
-  ]
+  recent: []
 };
 
 export default function DashboardPage() {
@@ -69,7 +65,7 @@ export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-950 to-gray-900 text-white">
       <main className="pt-36 px-6 pb-12 max-w-7xl mx-auto">
-        
+
         <div className="w-full py-3 px-4 text-center relative z-50 bg-gradient-to-r from-gray-950 via-sky-800 to-gray-950 shadow-md border-b border-sky-800/30 mt-[4.5rem]">
           <h1 className="text-3xl md:text-4xl font-extrabold tracking-wide text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-yellow-300 to-amber-500 animate-pulse uppercase">
             🗳️ Vote for Yoshida!
@@ -146,11 +142,10 @@ export default function DashboardPage() {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {destinations.map((destination) => (
-                 <div
-                 key={destination.id}
-                 className="rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer bg-gray-900 text-white"
-               >
-               
+                  <div
+                    key={destination.id}
+                    className="rounded-xl overflow-hidden shadow-lg transform hover:scale-105 transition-transform duration-300 cursor-pointer bg-gray-900 text-white"
+                  >
                     <div className="relative w-full h-48 overflow-hidden">
                       <img
                         src={`/images/${destination.city.toLowerCase().replace(/\s+/g, "")}.jpg`}
@@ -182,40 +177,20 @@ export default function DashboardPage() {
                   <p className="text-gray-400 text-sm mb-1">Total Trips</p>
                   <p className={`text-2xl ${typography.fontFamily.heading} font-bold`}>{trips.total}</p>
                 </div>
-
                 <div className="bg-gray-800/50 p-4 rounded-xl">
                   <p className="text-gray-400 text-sm mb-1">Countries</p>
                   <p className={`text-2xl ${typography.fontFamily.heading} font-bold`}>{trips.countries}</p>
                 </div>
-
                 <div className="bg-gray-800/50 p-4 rounded-xl">
                   <p className="text-gray-400 text-sm mb-1">Upcoming</p>
                   <p className={`text-2xl ${typography.fontFamily.heading} font-bold`}>{trips.upcoming}</p>
                 </div>
               </div>
 
-              {trips.recent && trips.recent.length > 0 && (
-                <div className="mb-6">
-                  <h4 className={`text-lg ${typography.fontFamily.heading} font-medium mb-3`}>Recent Trips</h4>
-                  <div className="space-y-2">
-                    {trips.recent.map(trip => (
-                      <div key={trip.id} className="p-3 bg-gray-800/30 rounded-lg border border-gray-800/50">
-                        <div className="flex justify-between items-center">
-                          <p className={`${typography.fontFamily.heading} font-medium`}>{trip.destination}</p>
-                          <span className={`text-xs px-2 py-1 rounded-full ${
-                            trip.status === 'upcoming'
-                              ? 'bg-emerald-900/30 text-emerald-400'
-                              : 'bg-blue-900/30 text-blue-400'
-                          }`}>
-                            {trip.status === 'upcoming' ? 'Upcoming' : 'Completed'}
-                          </span>
-                        </div>
-                        <p className="text-sm text-gray-500 mt-1">{trip.date}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              )}
+              <div className="bg-gray-800/30 p-6 rounded-xl mb-6">
+                <p className="text-lg italic text-gray-300 mb-2">“Travel is the only thing you buy that makes you richer.”</p>
+                <p className="text-sm text-gray-500 text-right">— Unknown</p>
+              </div>
 
               <ThemedButton
                 themeVariant="primary"
